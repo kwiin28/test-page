@@ -1,0 +1,2351 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>バナナラボテンプレート - ゼロから悩まない、選んで始めるWebサイト制作</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --c-bg: #F7F8FA;
+      --c-bg-alt: #EEEEF3;
+      --c-bg-white: #FFFFFF;
+      --c-text: #1E1E2E;
+      --c-text-sub: #5E5E72;
+      --c-text-light: #9393A8;
+      --c-accent: #4A6CF7;
+      --c-accent-hover: #3B5DE6;
+      --c-accent-light: #E8ECFE;
+      --c-accent-soft: #F0F2FF;
+      --c-border: #E2E2EC;
+      --c-green: #34B27B;
+      --c-green-bg: #EEFBF4;
+      --c-red: #D4605A;
+      --c-red-bg: #FDF0EF;
+      --c-plan-recruit: #4A6CF7;
+      --c-plan-experience: #8B5CF6;
+      --c-plan-hotel: #0EA5A5;
+      --c-plan-cafe: #E5A338;
+      --c-plan-corporate: #475569;
+      --c-plan-logo: #EC4899;
+      --font-display: 'DM Sans', sans-serif;
+      --font-body: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+      --font-sans: 'Noto Sans JP', sans-serif;
+      --shadow-xs: 0 1px 2px rgba(30, 30, 46, 0.04);
+      --shadow-sm: 0 2px 8px rgba(30, 30, 46, 0.06);
+      --shadow-md: 0 4px 20px rgba(30, 30, 46, 0.08);
+      --shadow-lg: 0 12px 40px rgba(30, 30, 46, 0.10);
+      --radius: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--c-text);
+      background: var(--c-bg);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-label {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: var(--c-accent);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 16px;
+      height: 2px;
+      background: var(--c-accent);
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-family: var(--font-sans);
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1.55;
+      margin-bottom: 12px;
+      letter-spacing: 0.01em;
+    }
+
+    .section-desc {
+      color: var(--c-text-sub);
+      font-size: 0.92rem;
+      max-width: 580px;
+      line-height: 1.85;
+    }
+
+    .section-desc.center {
+      margin: 0 auto 48px;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 10px;
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--c-accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--c-accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(74, 108, 247, 0.25);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--c-accent);
+      border: 1.5px solid var(--c-accent);
+    }
+
+    .btn-outline:hover {
+      background: var(--c-accent);
+      color: #fff;
+    }
+
+    .btn-ghost {
+      background: var(--c-accent-light);
+      color: var(--c-accent);
+    }
+
+    .btn-ghost:hover {
+      background: var(--c-accent);
+      color: #fff;
+    }
+
+    .btn-arrow::after {
+      content: '→';
+      transition: transform 0.25s;
+    }
+
+    .btn-arrow:hover::after {
+      transform: translateX(3px);
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(247, 248, 250, 0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--c-border);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+    }
+
+    .header-inner {
+      max-width: 1080px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-logo {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--c-text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header-logo-icon {
+      width: 24px;
+      height: 24px;
+      background: var(--c-accent);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .header-nav a {
+      font-size: 0.8rem;
+      color: var(--c-text-sub);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .header-nav a:hover {
+      color: var(--c-accent);
+    }
+
+    .header-cta {
+      font-size: 0.78rem !important;
+      padding: 7px 18px !important;
+      background: var(--c-accent) !important;
+      color: #fff !important;
+      border-radius: 8px;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 130px 0 70px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 50%;
+      background: linear-gradient(135deg, var(--c-accent-soft) 0%, transparent 60%);
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    .hero-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--c-accent-light);
+      color: var(--c-accent);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 6px;
+      margin-bottom: 18px;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-tag-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--c-accent);
+    }
+
+    .hero-title {
+      font-family: var(--font-sans);
+      font-size: 2.1rem;
+      font-weight: 700;
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      background: linear-gradient(transparent 60%, var(--c-accent-light) 60%);
+    }
+
+    .hero-sub {
+      color: var(--c-text-sub);
+      font-size: 0.92rem;
+      line-height: 1.9;
+      margin-bottom: 32px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 28px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--c-border);
+    }
+
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--c-accent);
+      line-height: 1.2;
+    }
+
+    .hero-stat-label {
+      font-size: 0.72rem;
+      color: var(--c-text-light);
+    }
+
+    /* Hero browser mockup */
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-browser {
+      background: var(--c-bg-white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      border: 1px solid var(--c-border);
+    }
+
+    .hero-browser-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 14px;
+      background: var(--c-bg);
+      border-bottom: 1px solid var(--c-border);
+    }
+
+    .hero-browser-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .hero-browser-url {
+      flex: 1;
+      margin-left: 8px;
+      height: 22px;
+      border-radius: 4px;
+      background: var(--c-bg-white);
+      border: 1px solid var(--c-border);
+    }
+
+    .hero-browser-body {
+      padding: 16px;
+    }
+
+    .hero-plan-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .hero-plan {
+      border-radius: 8px;
+      padding: 14px;
+      border: 1px solid var(--c-border);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      cursor: default;
+      background: var(--c-bg-white);
+    }
+
+    .hero-plan:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-plan-color {
+      height: 6px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      opacity: 0.7;
+    }
+
+    .hero-plan-label {
+      font-size: 0.68rem;
+      color: var(--c-text-light);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-family: var(--font-display);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .hero-plan-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .hero-plan-skel {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hero-plan-line {
+      height: 3px;
+      border-radius: 3px;
+      background: var(--c-border);
+    }
+
+    .hero-plan-5th {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 14px;
+    }
+
+    .hero-plan-5th .hero-plan-name {
+      margin: 0;
+    }
+
+    .hero-plan-5th .hero-plan-color {
+      width: 100% !important;
+      height: 6px !important;
+      border-radius: 6px !important;
+      margin-bottom: 0 !important;
+    }
+
+    .hero-badge-semi {
+      background: var(--c-accent);
+      color: #fff;
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-left: auto;
+    }
+
+    /* ===== FOR WHO ===== */
+    .for-who {
+      background: var(--c-bg-white);
+    }
+
+    .concern-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .concern-card {
+      background: var(--c-bg);
+      border-radius: var(--radius);
+      padding: 26px 18px;
+      text-align: center;
+      border: 1px solid transparent;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .concern-card:hover {
+      border-color: var(--c-accent);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .concern-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--c-accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      font-size: 1.1rem;
+    }
+
+    .concern-text {
+      font-size: 0.82rem;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    /* ===== FEATURES ===== */
+    .features {
+      background: var(--c-bg);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .feature-card {
+      background: var(--c-bg-white);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      border: 1px solid var(--c-border);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--c-accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      margin-bottom: 16px;
+    }
+
+    .feature-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .feature-desc {
+      font-size: 0.82rem;
+      color: var(--c-text-sub);
+      line-height: 1.75;
+    }
+
+    .feature-grid-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    /* ===== PLANS ===== */
+    .plans {
+      background: var(--c-bg-white);
+    }
+
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+    }
+
+    .plan-card {
+      background: var(--c-bg);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--c-border);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .plan-preview {
+      height: 110px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .plan-preview-inner {
+      width: 85%;
+      height: 80%;
+      border-radius: 4px;
+      background: var(--c-bg-white);
+      box-shadow: var(--shadow-xs);
+      display: flex;
+      flex-direction: column;
+      padding: 8px;
+      gap: 4px;
+    }
+
+    .plan-preview-bar {
+      height: 4px;
+      border-radius: 4px;
+    }
+
+    .plan-preview-block {
+      flex: 1;
+      border-radius: 3px;
+      background: var(--c-border);
+      opacity: 0.4;
+    }
+
+    .plan-preview-cols {
+      display: flex;
+      gap: 4px;
+      flex: 2;
+    }
+
+    .plan-preview-col {
+      flex: 1;
+      border-radius: 3px;
+      background: var(--c-border);
+      opacity: 0.3;
+    }
+
+    .plan-body {
+      padding: 18px;
+    }
+
+    .plan-tag {
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 8px;
+      letter-spacing: 0.04em;
+    }
+
+    .plan-name {
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .plan-desc {
+      font-size: 0.78rem;
+      color: var(--c-text-sub);
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+
+    .plan-pages {
+      font-size: 0.7rem;
+      color: var(--c-text-light);
+      margin-bottom: 14px;
+    }
+
+    .plan-link {
+      font-size: 0.8rem;
+      color: var(--c-accent);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap 0.25s;
+    }
+
+    .plan-link:hover {
+      gap: 8px;
+    }
+
+    .plan-link::after {
+      content: '→';
+    }
+
+
+    /* ===== SPECIAL PLAN ===== */
+    .special-plan {
+      background: linear-gradient(180deg, rgba(236, 72, 153, 0.04) 0%, var(--c-bg-white) 100%);
+    }
+
+    .special-plan-card {
+      max-width: 920px;
+      margin: 0 auto;
+      background: var(--c-bg-white);
+      border: 1px solid rgba(236, 72, 153, 0.14);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      box-shadow: var(--shadow-md);
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .special-plan-card::after {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(236, 72, 153, 0.07);
+      pointer-events: none;
+    }
+
+    .special-plan-main,
+    .special-plan-side {
+      position: relative;
+      z-index: 1;
+    }
+
+    .special-plan-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--c-plan-logo);
+      background: rgba(236, 72, 153, 0.10);
+      border-radius: 999px;
+      padding: 7px 12px;
+      margin-bottom: 16px;
+    }
+
+    .special-plan-chip::before {
+      content: '◆';
+      font-size: 0.68rem;
+    }
+
+    .special-plan-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+
+    .special-plan-desc {
+      font-size: 0.88rem;
+      color: var(--c-text-sub);
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+
+    .special-plan-points {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .special-plan-point {
+      background: var(--c-bg);
+      border: 1px solid var(--c-border);
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+
+    .special-plan-point-label {
+      font-size: 0.68rem;
+      color: var(--c-plan-logo);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .special-plan-point-text {
+      font-size: 0.82rem;
+      color: var(--c-text-sub);
+      line-height: 1.7;
+    }
+
+    .special-plan-pricebox {
+      background: linear-gradient(180deg, rgba(236,72,153,0.08) 0%, rgba(236,72,153,0.02) 100%);
+      border: 1px solid rgba(236, 72, 153, 0.18);
+      border-radius: 18px;
+      padding: 24px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .special-plan-price-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--c-plan-logo);
+      margin-bottom: 8px;
+    }
+
+    .special-plan-price {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--c-plan-logo);
+      margin-bottom: 8px;
+    }
+
+    .special-plan-price span {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--c-text-light);
+    }
+
+    .special-plan-note {
+      font-size: 0.78rem;
+      color: var(--c-text-sub);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .special-plan-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .special-plan-meta-item {
+      font-size: 0.78rem;
+      color: var(--c-text-sub);
+      line-height: 1.7;
+      padding-top: 8px;
+      border-top: 1px solid rgba(236, 72, 153, 0.14);
+    }
+
+    /* ===== SCOPE ===== */
+    .scope {
+      background: var(--c-bg);
+    }
+
+    .scope-badge {
+      display: inline-block;
+      background: var(--c-accent-light);
+      color: var(--c-accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    .scope-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .scope-box {
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+    }
+
+    .scope-can {
+      background: var(--c-green-bg);
+      border: 1px solid rgba(52, 178, 123, 0.15);
+    }
+
+    .scope-hard {
+      background: var(--c-red-bg);
+      border: 1px solid rgba(212, 96, 90, 0.15);
+    }
+
+    .scope-heading {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .scope-can .scope-heading {
+      color: var(--c-green);
+    }
+
+    .scope-hard .scope-heading {
+      color: var(--c-red);
+    }
+
+    .scope-list {
+      list-style: none;
+    }
+
+    .scope-list li {
+      font-size: 0.85rem;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scope-list li::before {
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .scope-can .scope-list li::before {
+      content: '○';
+      color: var(--c-green);
+    }
+
+    .scope-hard .scope-list li::before {
+      content: '△';
+      color: var(--c-red);
+    }
+
+    /* ===== FLOW ===== */
+    .flow {
+      background: var(--c-bg-white);
+    }
+
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .flow-steps::before {
+      content: '';
+      position: absolute;
+      top: 24px;
+      left: 7%;
+      right: 7%;
+      height: 2px;
+      background: var(--c-border);
+      z-index: 0;
+    }
+
+    .flow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .flow-num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--c-bg-white);
+      border: 2px solid var(--c-accent);
+      color: var(--c-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .flow-step:first-child .flow-num,
+    .flow-step:last-child .flow-num {
+      background: var(--c-accent);
+      color: #fff;
+    }
+
+    .flow-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .flow-detail {
+      font-size: 0.68rem;
+      color: var(--c-text-light);
+      line-height: 1.5;
+    }
+
+    /* ===== PRICING ===== */
+    .pricing {
+      background: var(--c-bg);
+    }
+
+    .pricing-box {
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--c-bg-white);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px;
+      border: 1px solid var(--c-border);
+      text-align: center;
+    }
+
+    .pricing-amount {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--c-accent);
+      margin-bottom: 4px;
+    }
+
+    .pricing-amount span {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--c-text-light);
+    }
+
+    .pricing-note {
+      font-size: 0.8rem;
+      color: var(--c-text-light);
+      margin-bottom: 28px;
+    }
+
+    .pricing-divider {
+      height: 1px;
+      background: var(--c-border);
+      margin: 0 0 24px;
+    }
+
+    .pricing-options-title {
+      font-size: 0.72rem;
+      color: var(--c-text-light);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .pricing-tags {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pricing-tag {
+      background: var(--c-bg);
+      border: 1px solid var(--c-border);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 0.78rem;
+      color: var(--c-text-sub);
+    }
+
+    /* ===== CASES ===== */
+    .cases {
+      background: var(--c-bg-white);
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .case-card {
+      background: var(--c-bg);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .case-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .case-thumb {
+      aspect-ratio: 16 / 10;
+      background: linear-gradient(135deg, var(--c-accent-soft) 0%, #fff 100%);
+      border-bottom: 1px solid var(--c-border);
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .case-thumb-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      background: var(--c-bg-white);
+      box-shadow: var(--shadow-xs);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .case-thumb-bar {
+      width: 42%;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--c-accent);
+      opacity: 0.8;
+    }
+
+    .case-thumb-line {
+      height: 5px;
+      border-radius: 999px;
+      background: var(--c-border);
+    }
+
+    .case-thumb-line.sm {
+      width: 52%;
+    }
+
+    .case-thumb-line.md {
+      width: 76%;
+    }
+
+    .case-thumb-blocks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .case-thumb-block {
+      border-radius: 8px;
+      background: var(--c-bg);
+      border: 1px solid var(--c-border);
+    }
+
+    .case-body {
+      padding: 22px 20px 20px;
+      text-align: left;
+    }
+
+    .case-category {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--c-accent);
+      background: var(--c-accent-light);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .case-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .case-desc {
+      font-size: 0.82rem;
+      color: var(--c-text-sub);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .case-points {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .case-point {
+      font-size: 0.78rem;
+      color: var(--c-text-sub);
+      line-height: 1.7;
+      padding-top: 8px;
+      border-top: 1px solid var(--c-border);
+    }
+
+    .case-point strong {
+      color: var(--c-text);
+      font-weight: 600;
+    }
+
+    .case-results {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .case-result {
+      background: var(--c-bg-white);
+      border: 1px solid var(--c-border);
+      border-radius: 10px;
+      padding: 10px 8px;
+      text-align: center;
+    }
+
+    .case-result-num {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--c-accent);
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+
+    .case-result-label {
+      font-size: 0.64rem;
+      color: var(--c-text-light);
+      line-height: 1.4;
+    }
+
+    .cases-note {
+      margin-top: 18px;
+      font-size: 0.76rem;
+      color: var(--c-text-light);
+    }
+
+    /* ===== COMPARE ===== */
+    .compare {
+      background: var(--c-bg-white);
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--c-bg-white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--c-border);
+    }
+
+    .compare-table th,
+    .compare-table td {
+      padding: 15px 18px;
+      text-align: center;
+      font-size: 0.84rem;
+      border-bottom: 1px solid var(--c-border);
+    }
+
+    .compare-table th {
+      background: var(--c-bg);
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    .compare-table td:first-child,
+    .compare-table th:first-child {
+      text-align: left;
+      font-weight: 500;
+      color: var(--c-text-sub);
+      width: 22%;
+    }
+
+    .compare-hl {
+      background: rgba(74, 108, 247, 0.03);
+    }
+
+    .compare-table th.compare-hl {
+      color: var(--c-accent);
+      background: rgba(74, 108, 247, 0.07);
+    }
+
+    .compare-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ===== FAQ ===== */
+    .faq {
+      background: var(--c-bg);
+    }
+
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--c-border);
+    }
+
+    .faq-q {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      background: none;
+      border: none;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--c-text);
+      cursor: pointer;
+      text-align: left;
+      gap: 14px;
+    }
+
+    .faq-q:hover {
+      color: var(--c-accent);
+    }
+
+    .faq-toggle {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background: var(--c-bg-white);
+      border: 1px solid var(--c-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .faq-item.open .faq-toggle {
+      transform: rotate(45deg);
+      background: var(--c-accent-light);
+      border-color: var(--c-accent);
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 300px;
+    }
+
+    .faq-a-inner {
+      padding: 0 0 20px;
+      font-size: 0.84rem;
+      color: var(--c-text-sub);
+      line-height: 1.8;
+    }
+
+    /* ===== FINAL CTA ===== */
+    .final-cta {
+      background: var(--c-text);
+      padding: 80px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(74, 108, 247, 0.15), transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(139, 92, 246, 0.10), transparent 50%);
+    }
+
+    .final-cta * {
+      position: relative;
+    }
+
+    .final-cta-title {
+      font-family: var(--font-sans);
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .final-cta-sub {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 0.88rem;
+      margin-bottom: 30px;
+    }
+
+    .final-cta-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .final-cta .btn-primary {
+      background: #fff;
+      color: var(--c-accent);
+    }
+
+    .final-cta .btn-primary:hover {
+      box-shadow: 0 4px 24px rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .final-cta .btn-outline {
+      border-color: rgba(255, 255, 255, 0.3);
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .final-cta .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.5);
+      color: #fff;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--c-text);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.35);
+      padding: 28px 0;
+      text-align: center;
+      font-size: 0.75rem;
+    }
+
+
+    .footer-company {
+      margin-bottom: 8px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.78rem;
+    }
+
+    .footer-company a {
+      color: #fff;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+      transition: opacity 0.2s ease, border-color 0.2s ease;
+    }
+
+    .footer-company a:hover {
+      opacity: 0.8;
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .hero-visual {
+        max-width: 440px;
+      }
+
+      .hero-title {
+        font-size: 1.7rem;
+      }
+
+      .concern-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid-bottom {
+        grid-template-columns: 1fr;
+      }
+
+      .plan-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-plan-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .scope-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .special-plan-card {
+        grid-template-columns: 1fr;
+      }
+
+      .special-plan-points {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .flow-steps {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+
+      .flow-steps::before {
+        display: none;
+      }
+
+      .case-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header-nav {
+        display: none;
+      }
+    }
+
+    @media(max-width:600px) {
+      .section {
+        padding: 64px 0;
+      }
+
+      .hero {
+        padding: 100px 0 48px;
+      }
+
+      .hero-title {
+        font-size: 1.4rem;
+      }
+
+      .section-title {
+        font-size: 1.3rem;
+      }
+
+      .concern-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .plan-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-plan-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-box {
+        padding: 32px 24px;
+      }
+
+      .special-plan-card {
+        padding: 28px 22px;
+      }
+
+      .special-plan-points {
+        grid-template-columns: 1fr;
+      }
+
+      .special-plan-price {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="#" class="header-logo">
+        <span class="header-logo-icon">B</span>
+        Bananalabo Template
+      </a>
+      <nav class="header-nav">
+        <a href="#features">特徴</a>
+        <a href="#plans">プラン</a>
+        <a href="#cases">こんなサイトづくりに対応しています</a>
+        <a href="#flow">ご相談から公開までの流れ</a>
+        <a href="#pricing">料金</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="header-cta">相談する</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 8-1 HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="fade-up">
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          選べるWebサイト制作
+        </div>
+        <h1 class="hero-title">
+          ゼロから悩まない、<br>
+          <em>選んで始める</em>Webサイト制作
+        </h1>
+        <p class="hero-sub">
+          ベースデザインをもとに、テキストや写真を整えて納品。<br>
+          はじめてでも進めやすい、<br>
+          ちょうどいいWeb制作サービスです。
+        </p>
+        <div class="hero-buttons">
+          <a href="#plans" class="btn btn-primary btn-arrow">プランを見る</a>
+          <a href="#flow" class="btn btn-outline">流れを見る</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num">6</div>
+            <div class="hero-stat-label">選べるベースデザイン</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">2〜4週間</div>
+            <div class="hero-stat-label">公開までの目安</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">調整込み</div>
+            <div class="hero-stat-label">内容の調整込み</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual fade-up">
+        <div class="hero-browser">
+          <div class="hero-browser-bar">
+            <div class="hero-browser-dot" style="background:#FF605C;"></div>
+            <div class="hero-browser-dot" style="background:#FFBD44;"></div>
+            <div class="hero-browser-dot" style="background:#00CA4E;"></div>
+            <div class="hero-browser-url"></div>
+          </div>
+          <div class="hero-browser-body">
+            <div class="hero-plan-grid">
+              <div class="hero-plan">
+                <div class="hero-plan-color" style="background:var(--c-plan-recruit);"></div>
+                <div class="hero-plan-label">Plan 01</div>
+                <div class="hero-plan-name">採用サイト</div>
+                <div class="hero-plan-skel">
+                  <div class="hero-plan-line" style="width:100%;"></div>
+                  <div class="hero-plan-line" style="width:70%;"></div>
+                </div>
+              </div>
+              <div class="hero-plan">
+                <div class="hero-plan-color" style="background:var(--c-plan-experience);"></div>
+                <div class="hero-plan-label">Plan 02</div>
+                <div class="hero-plan-name">体験サービス</div>
+                <div class="hero-plan-skel">
+                  <div class="hero-plan-line" style="width:100%;"></div>
+                  <div class="hero-plan-line" style="width:65%;"></div>
+                </div>
+              </div>
+              <div class="hero-plan">
+                <div class="hero-plan-color" style="background:var(--c-plan-hotel);"></div>
+                <div class="hero-plan-label">Plan 03</div>
+                <div class="hero-plan-name">宿泊施設</div>
+                <div class="hero-plan-skel">
+                  <div class="hero-plan-line" style="width:100%;"></div>
+                  <div class="hero-plan-line" style="width:80%;"></div>
+                </div>
+              </div>
+              <div class="hero-plan">
+                <div class="hero-plan-color" style="background:var(--c-plan-cafe);"></div>
+                <div class="hero-plan-label">Plan 04</div>
+                <div class="hero-plan-name">カフェ</div>
+                <div class="hero-plan-skel">
+                  <div class="hero-plan-line" style="width:100%;"></div>
+                  <div class="hero-plan-line" style="width:60%;"></div>
+                </div>
+              </div>
+              <div class="hero-plan hero-plan-5th">
+                <div class="hero-plan-color"
+                  style="background:var(--c-plan-corporate);width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-bottom:0;">
+                </div>
+                <div>
+                  <div class="hero-plan-label">Plan 05</div>
+                  <div class="hero-plan-name">コーポレート</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8-2 こんな方におすすめ -->
+  <section class="section for-who">
+    <div class="container text-center">
+      <div class="fade-up">
+        <div class="section-label">For You</div>
+        <h2 class="section-title">こんなお悩み、ありませんか？</h2>
+        <p class="section-desc center">"サイトを作りたいけど、何から始めればいいかわからない"<br>
+          そんな方でも、安心して進めやすいサービスです。</p>
+      </div>
+      <div class="concern-grid fade-up">
+        <div class="concern-card">
+          <div class="concern-icon">💰</div>
+          <div class="concern-text">フルオーダーほど<br>予算はかけられない</div>
+        </div>
+        <div class="concern-card">
+          <div class="concern-icon">✨</div>
+          <div class="concern-text">でも見た目には<br>こだわりたい</div>
+        </div>
+        <div class="concern-card">
+          <div class="concern-icon">😟</div>
+          <div class="concern-text">テンプレートの<br>編集が不安</div>
+        </div>
+        <div class="concern-card">
+          <div class="concern-icon">⏱</div>
+          <div class="concern-text">できるだけ早く<br>サイトを公開したい</div>
+        </div>
+        <div class="concern-card">
+          <div class="concern-icon">👀</div>
+          <div class="concern-text">完成イメージが見えた<br>状態で依頼したい</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8-3 サービスの特徴 -->
+  <section class="section features" id="features">
+    <div class="container text-center">
+      <div class="fade-up">
+        <div class="section-label">Features</div>
+        <h2 class="section-title">選んで始められる、5つのベースデザイン</h2>
+        <p class="section-desc center">業種や目的に合わせて選びやすく、まずは5つのベースデザインから進められるサービスです。</p>
+      </div>
+      <div class="feature-grid fade-up">
+        <div class="feature-card">
+          <div class="feature-icon">📐</div>
+          <div class="feature-title">業種に合ったベースから始められる</div>
+          <div class="feature-desc">採用・体験・宿泊・カフェ・コーポレートなど、業種に合わせたベースデザインをご用意しています。</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✏️</div>
+          <div class="feature-title">テキストや写真を整えて納品</div>
+          <div class="feature-desc">素材をいただき、テキストの差し替えや写真の調整まで対応。テンプレートを購入して終わりではありません。</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-title">ゼロから作るより、進めやすい</div>
+          <div class="feature-desc">ベースがあるから、最初の方向決めがしやすく、やり取りもスムーズ。はじめてでも進行のイメージを持ちやすいのが特長です。</div>
+        </div>
+      </div>
+      <div class="feature-grid-bottom fade-up">
+        <div class="feature-card">
+          <div class="feature-icon">👁</div>
+          <div class="feature-title">完成イメージが見えやすい</div>
+          <div class="feature-desc">仕上がりのイメージを持ちながら進められるので、「想像と違った」を減らしやすく、相談もしやすくなります。</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📄</div>
+          <div class="feature-title">必要な構成を考えやすい</div>
+          <div class="feature-desc">業種ごとによく使うページ構成をもとにしているので、何を載せるか迷いやすい方にも取り入れやすい内容です。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8-4 プラン一覧 -->
+  <section class="section plans" id="plans">
+    <div class="container text-center">
+      <div class="fade-up">
+        <div class="section-label">Plans</div>
+        <h2 class="section-title">5つのベースデザインから選べます</h2>
+        <p class="section-desc center">業種や見せたい内容に合わせて、近いベースデザインからサイトづくりを始められます。</p>
+      </div>
+      <div class="plan-grid fade-up">
+        <div class="plan-card">
+          <div class="plan-preview" style="background:rgba(74,108,247,0.06);">
+            <div class="plan-preview-inner">
+              <div class="plan-preview-bar" style="background:var(--c-plan-recruit);"></div>
+              <div class="plan-preview-block"></div>
+              <div class="plan-preview-cols">
+                <div class="plan-preview-col"></div>
+                <div class="plan-preview-col"></div>
+              </div>
+            </div>
+          </div>
+          <div class="plan-body">
+            <span class="plan-tag" style="background:rgba(74,108,247,0.08);color:var(--c-plan-recruit);">採用</span>
+            <div class="plan-name">採用サイトプラン</div>
+            <div class="plan-desc">求職者に届く、会社の魅力が伝わる採用専用サイト</div>
+            <div class="plan-pages">想定 5〜7ページ</div>
+            <a href="#" class="plan-link">詳しく見る</a>
+          </div>
+        </div>
+        <div class="plan-card">
+          <div class="plan-preview" style="background:rgba(139,92,246,0.06);">
+            <div class="plan-preview-inner">
+              <div class="plan-preview-bar" style="background:var(--c-plan-experience);"></div>
+              <div class="plan-preview-block"></div>
+              <div class="plan-preview-cols">
+                <div class="plan-preview-col"></div>
+                <div class="plan-preview-col"></div>
+              </div>
+            </div>
+          </div>
+          <div class="plan-body">
+            <span class="plan-tag" style="background:rgba(139,92,246,0.08);color:var(--c-plan-experience);">体験</span>
+            <div class="plan-name">体験サービスプラン</div>
+            <div class="plan-desc">ツアー・教室・レッスンなどの体験を魅力的に紹介</div>
+            <div class="plan-pages">想定 4〜6ページ</div>
+            <a href="#" class="plan-link">詳しく見る</a>
+          </div>
+        </div>
+        <div class="plan-card">
+          <div class="plan-preview" style="background:rgba(14,165,165,0.06);">
+            <div class="plan-preview-inner">
+              <div class="plan-preview-bar" style="background:var(--c-plan-hotel);"></div>
+              <div class="plan-preview-block"></div>
+              <div class="plan-preview-cols">
+                <div class="plan-preview-col"></div>
+                <div class="plan-preview-col"></div>
+              </div>
+            </div>
+          </div>
+          <div class="plan-body">
+            <span class="plan-tag" style="background:rgba(14,165,165,0.08);color:var(--c-plan-hotel);">宿泊</span>
+            <div class="plan-name">宿泊サイトプラン</div>
+            <div class="plan-desc">お部屋・施設の魅力を伝え、予約につなげるサイト</div>
+            <div class="plan-pages">想定 5〜8ページ</div>
+            <a href="#" class="plan-link">詳しく見る</a>
+          </div>
+        </div>
+        <div class="plan-card">
+          <div class="plan-preview" style="background:rgba(229,163,56,0.06);">
+            <div class="plan-preview-inner">
+              <div class="plan-preview-bar" style="background:var(--c-plan-cafe);"></div>
+              <div class="plan-preview-block"></div>
+              <div class="plan-preview-cols">
+                <div class="plan-preview-col"></div>
+                <div class="plan-preview-col"></div>
+              </div>
+            </div>
+          </div>
+          <div class="plan-body">
+            <span class="plan-tag" style="background:rgba(229,163,56,0.08);color:var(--c-plan-cafe);">カフェ</span>
+            <div class="plan-name">カフェサイトプラン</div>
+            <div class="plan-desc">お店の雰囲気が伝わる、おしゃれで見やすいサイト</div>
+            <div class="plan-pages">想定 3〜5ページ</div>
+            <a href="#" class="plan-link">詳しく見る</a>
+          </div>
+        </div>
+        <div class="plan-card">
+          <div class="plan-preview" style="background:rgba(71,85,105,0.06);">
+            <div class="plan-preview-inner">
+              <div class="plan-preview-bar" style="background:var(--c-plan-corporate);"></div>
+              <div class="plan-preview-block"></div>
+              <div class="plan-preview-cols">
+                <div class="plan-preview-col"></div>
+                <div class="plan-preview-col"></div>
+              </div>
+            </div>
+          </div>
+          <div class="plan-body">
+            <span class="plan-tag" style="background:rgba(71,85,105,0.08);color:var(--c-plan-corporate);">企業</span>
+            <div class="plan-name">コーポレートプラン</div>
+            <div class="plan-desc">信頼感のある、会社紹介に特化した企業サイト</div>
+            <div class="plan-pages">想定 5〜7ページ</div>
+            <a href="#" class="plan-link">詳しく見る</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8-4-1 サイト＋ロゴ作成プラン -->
+  <section class="section special-plan" id="logo-plan">
+    <div class="container text-center">
+      <div class="fade-up">
+        <div class="section-label">Special Plan</div>
+        <h2 class="section-title">サイトとロゴをまとめて整えたい方へ</h2>
+        <p class="section-desc center">通常の5プランとは別に、立ち上げ時の見せ方までまとめて整えたい方向けの特別プランをご用意しています。</p>
+      </div>
+      <div class="special-plan-card fade-up">
+        <div class="special-plan-main">
+          <div class="special-plan-chip">特別プラン</div>
+          <h3 class="special-plan-title">サイト＋ロゴ作成プラン</h3>
+          <p class="special-plan-desc">新しく事業やサービスを始める方、サイト公開に合わせてロゴも一緒に整えたい方向けのプランです。通常のベースデザイン制作に加えて、見た目の入り口になるロゴまでまとめて相談できます。</p>
+          <div class="special-plan-points">
+            <div class="special-plan-point">
+              <div class="special-plan-point-label">For</div>
+              <div class="special-plan-point-text">これから立ち上げるブランドや、小規模事業の初期制作におすすめです。</div>
+            </div>
+            <div class="special-plan-point">
+              <div class="special-plan-point-label">Included</div>
+              <div class="special-plan-point-text">サイト制作に加えて、ロゴの方向性整理とデザイン制作まで含めて進めます。</div>
+            </div>
+            <div class="special-plan-point">
+              <div class="special-plan-point-label">Merit</div>
+              <div class="special-plan-point-text">サイトとロゴの世界観を揃えやすく、公開時の見え方に統一感を持たせやすくなります。</div>
+            </div>
+            <div class="special-plan-point">
+              <div class="special-plan-point-label">Note</div>
+              <div class="special-plan-point-text">複雑なブランド設計や本格的なVI開発ではなく、公開に必要な範囲を整える想定です。</div>
+            </div>
+          </div>
+        </div>
+        <div class="special-plan-side">
+          <div class="special-plan-pricebox">
+            <div>
+              <div class="special-plan-price-label">Price</div>
+              <div class="special-plan-price">¥000,000〜 <span>（税別）</span></div>
+              <p class="special-plan-note">※ サイト制作費とは別枠でご案内する特別プランです。内容やページ数、ロゴのご要望に応じてお見積もりします。</p>
+              <div class="special-plan-meta">
+                <div class="special-plan-meta-item">想定内容：3〜6ページ程度のサイト制作＋ロゴ作成</div>
+                <div class="special-plan-meta-item">向いているケース：新規立ち上げ / リニューアル初期 / 開業準備</div>
+                <div class="special-plan-meta-item">進め方：サイトとロゴをまとめてヒアリングし、一貫した方向で制作</div>
+              </div>
+            </div>
+            <a href="#contact" class="btn btn-primary btn-arrow">このプランを相談する</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8-5 セミオーダーでできること -->
+
+  <section class="section scope" id="scope">
+    <div class="container text-center">
+      <div class="fade-up">
+        <div class="section-label">Scope</div>
+        <h2 class="section-title">ベースをもとに、ここまで整えられます</h2>
+        <div style="max-width:580px;margin:0 auto 12px;">
+          <span class="scope-badge">丁寧に整えて納品します</span>
+        </div>
+        <p class="section-desc center">ベースデザインをもとに、以下の範囲で調整して納品します。</p>
+      </div>
+      <div class="scope-grid fade-up">
+        <div class="scope-box scope-can">
+          <div class="scope-heading"><span>○</span> 対応しやすい内容</div>
+          <ul class="scope-list">
+            <li>テキスト（見出し・本文の差し替え）</li>
+            <li>写真・画像の入れ替え</li>
+            <li>ロゴの配置</li>
+            <li>配色の調整</li>
+            <li>一部レイアウトの調整</li>
+            <li>必要に応じたページ追加</li>
+          </ul>
+        </div>
+        <div class="scope-box scope-hard">
+          <div class="scope-heading"><span>△</span> ご相談が必要な内容</div>
+          <ul class="scope-list">
+            <li>大幅なサイト構成の変更</li>
+            <li>完全に別テイストへの変更</li>
+            <li>特殊なシステム開発</li>
+            <li>大規模な独自設計</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8-6 ご相談から公開までの流れ -->
+  <section class="section flow" id="flow">
+    <div class="container text-center">
+      <div class="fade-up">
+        <div class="section-label">Flow</div>
+        <h2 class="section-title">ご相談から公開までの流れ</h2>
+        <p class="section-desc center">お問い合わせから納品まで、スムーズに進められます。</p>
+      </div>
+      <div class="flow-steps fade-up">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <div class="flow-label">お問い合わせ</div>
+          <div class="flow-detail">フォームから<br>お気軽にどうぞ</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <div class="flow-label">ヒアリング</div>
+          <div class="flow-detail">ご要望や業種を<br>お聞きします</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <div class="flow-label">プラン提案</div>
+          <div class="flow-detail">最適なプランを<br>ご案内します</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <div class="flow-label">素材ご提出</div>
+          <div class="flow-detail">テキスト・写真を<br>ご準備ください</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">5</div>
+          <div class="flow-label">制作・調整</div>
+          <div class="flow-detail">ベースに沿って<br>制作を進めます</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">6</div>
+          <div class="flow-label">ご確認・修正</div>
+          <div class="flow-detail">内容をご確認<br>いただき修正</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">7</div>
+          <div class="flow-label">納品・公開</div>
+          <div class="flow-detail">サイトを公開<br>して完了です</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8-7 料金について -->
+  <section class="section pricing" id="pricing">
+    <div class="container text-center">
+      <div class="fade-up">
+        <div class="section-label">Pricing</div>
+        <h2 class="section-title">料金について</h2>
+        <p class="section-desc center">通常のサイト制作プランは、基本料金をもとに必要に応じてオプションを追加できる形です。</p>
+      </div>
+      <div class="pricing-box fade-up">
+        <div class="pricing-amount">¥00,000〜 <span>（税別）</span></div>
+        <div class="pricing-note">※ こちらは通常のサイト制作プランの料金目安です。詳細はお問い合わせください。</div>
+        <div class="pricing-divider"></div>
+        <div class="pricing-options-title">Options</div>
+        <div class="pricing-tags">
+          <span class="pricing-tag">📄 ページ追加</span>
+          <span class="pricing-tag">✏️ 文章作成代行</span>
+          <span class="pricing-tag">📷 写真選定サポート</span>
+          <span class="pricing-tag">🔧 公開後の更新サポート</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8-8 こんなサイトづくりに対応しています -->
+  <section class="section cases" id="cases">
+    <div class="container text-center">
+      <div class="fade-up">
+        <div class="section-label">Case Studies</div>
+        <h2 class="section-title">こんなサイトづくりに対応しています</h2>
+        <p class="section-desc center">
+          業種や目的に合わせて、ベースデザインを調整しながら制作した事例のイメージです。
+        </p>
+      </div>
+
+      <div class="case-grid fade-up">
+        <article class="case-card">
+          <div class="case-thumb">
+            <div class="case-thumb-inner">
+              <div class="case-thumb-bar"></div>
+              <div class="case-thumb-line md"></div>
+              <div class="case-thumb-line sm"></div>
+              <div class="case-thumb-blocks">
+                <div class="case-thumb-block"></div>
+                <div class="case-thumb-block"></div>
+              </div>
+            </div>
+          </div>
+          <div class="case-body">
+            <span class="case-category">採用サイト</span>
+            <h3 class="case-title">応募前に会社の雰囲気が伝わる採用ページへ</h3>
+            <p class="case-desc">
+              会社紹介や仕事内容、スタッフインタビューの見せ方を整理し、
+              求職者が安心して応募しやすい構成に調整しました。
+            </p>
+            <div class="case-points">
+              <div class="case-point"><strong>課題：</strong>情報が少なく、応募前に雰囲気が伝わりづらい</div>
+              <div class="case-point"><strong>対応：</strong>写真・メッセージ・募集要項を再構成</div>
+              <div class="case-point"><strong>効果：</strong>採用ページとしての信頼感が向上</div>
+            </div>
+            <div class="case-results">
+              <div class="case-result">
+                <div class="case-result-num">6P</div>
+                <div class="case-result-label">ページ構成</div>
+              </div>
+              <div class="case-result">
+                <div class="case-result-num">3週</div>
+                <div class="case-result-label">制作目安</div>
+              </div>
+              <div class="case-result">
+                <div class="case-result-num">調整込</div>
+                <div class="case-result-label">文章・写真</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-thumb">
+            <div class="case-thumb-inner">
+              <div class="case-thumb-bar" style="background:var(--c-plan-hotel);"></div>
+              <div class="case-thumb-line md"></div>
+              <div class="case-thumb-line sm"></div>
+              <div class="case-thumb-blocks">
+                <div class="case-thumb-block"></div>
+                <div class="case-thumb-block"></div>
+              </div>
+            </div>
+          </div>
+          <div class="case-body">
+            <span class="case-category">宿泊施設</span>
+            <h3 class="case-title">写真の魅力が伝わる宿泊施設サイトへ</h3>
+            <p class="case-desc">
+              客室や食事、館内設備の写真を活かせるようにレイアウトを調整し、
+              予約導線まで見やすく整えました。
+            </p>
+            <div class="case-points">
+              <div class="case-point"><strong>課題：</strong>写真はあるが、魅力が十分に伝わっていない</div>
+              <div class="case-point"><strong>対応：</strong>ビジュアル重視の構成に調整し情報を整理</div>
+              <div class="case-point"><strong>効果：</strong>施設の雰囲気が伝わりやすいサイトに</div>
+            </div>
+            <div class="case-results">
+              <div class="case-result">
+                <div class="case-result-num">7P</div>
+                <div class="case-result-label">ページ構成</div>
+              </div>
+              <div class="case-result">
+                <div class="case-result-num">4週</div>
+                <div class="case-result-label">制作目安</div>
+              </div>
+              <div class="case-result">
+                <div class="case-result-num">予約導線</div>
+                <div class="case-result-label">導入設計</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-thumb">
+            <div class="case-thumb-inner">
+              <div class="case-thumb-bar" style="background:var(--c-plan-cafe);"></div>
+              <div class="case-thumb-line md"></div>
+              <div class="case-thumb-line sm"></div>
+              <div class="case-thumb-blocks">
+                <div class="case-thumb-block"></div>
+                <div class="case-thumb-block"></div>
+              </div>
+            </div>
+          </div>
+          <div class="case-body">
+            <span class="case-category">カフェサイト</span>
+            <h3 class="case-title">お店の世界観が伝わるシンプルなサイトへ</h3>
+            <p class="case-desc">
+              メニュー、店舗情報、営業案内を見やすく整理しながら、
+              写真のトーンに合わせて全体の雰囲気を整えました。
+            </p>
+            <div class="case-points">
+              <div class="case-point"><strong>課題：</strong>情報はあるが、印象に残りにくい</div>
+              <div class="case-point"><strong>対応：</strong>写真と余白を活かした見せ方に調整</div>
+              <div class="case-point"><strong>効果：</strong>店舗の雰囲気が伝わるサイトに改善</div>
+            </div>
+            <div class="case-results">
+              <div class="case-result">
+                <div class="case-result-num">4P</div>
+                <div class="case-result-label">ページ構成</div>
+              </div>
+              <div class="case-result">
+                <div class="case-result-num">2週</div>
+                <div class="case-result-label">制作目安</div>
+              </div>
+              <div class="case-result">
+                <div class="case-result-num">SNS導線</div>
+                <div class="case-result-label">追加対応</div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <p class="cases-note fade-up">
+        ※ 実際の掲載時は、業種名・課題・対応内容・制作期間などに置き換えてご利用ください。
+      </p>
+    </div>
+  </section>
+
+  <!-- 8-9 比較表 -->
+  <section class="section compare" id="compare">
+    <div class="container text-center">
+      <div class="fade-up">
+        <div class="section-label">Compare</div>
+        <h2 class="section-title">他の制作方法との比較</h2>
+        <p class="section-desc center">フルオーダーほど重すぎず、テンプレート購入ほど自分任せでもない、その中間くらいのサービスです。</p>
+      </div>
+      <div class="fade-up" style="overflow-x:auto;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>フルオーダー制作</th>
+              <th class="compare-hl">選べるWeb制作</th>
+              <th>テンプレート購入</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>価格</td>
+              <td>高い</td>
+              <td class="compare-hl">ちょうどいい</td>
+              <td>安い</td>
+            </tr>
+            <tr>
+              <td>納期</td>
+              <td>長い</td>
+              <td class="compare-hl">短め</td>
+              <td>すぐ使える</td>
+            </tr>
+            <tr>
+              <td>デザインの自由度</td>
+              <td>◎ 完全自由</td>
+              <td class="compare-hl">○ 調整可能</td>
+              <td>△ 限定的</td>
+            </tr>
+            <tr>
+              <td>サポート</td>
+              <td>◎ 手厚い</td>
+              <td class="compare-hl">○ しっかり</td>
+              <td>✕ なし</td>
+            </tr>
+            <tr>
+              <td>安心感</td>
+              <td>◎</td>
+              <td class="compare-hl">○</td>
+              <td>△</td>
+            </tr>
+            <tr>
+              <td>編集の負担</td>
+              <td>なし</td>
+              <td class="compare-hl">ほぼなし</td>
+              <td>すべて自分で</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8-10 FAQ -->
+  <section class="section faq" id="faq">
+    <div class="container">
+      <div class="text-center fade-up">
+        <div class="section-label">FAQ</div>
+        <h2 class="section-title">よくあるご質問</h2>
+        <p class="section-desc center">気になりやすいポイントを、あらかじめまとめています。</p>
+      </div>
+      <div class="faq-list fade-up">
+        <div class="faq-item">
+          <button class="faq-q">テンプレートだけ購入することはできますか？<span class="faq-toggle">+</span></button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              本サービスはテンプレート販売ではなく、ベースデザインをもとにテキストや写真を整えて納品する制作サービスです。テンプレート単体での販売は行っておりません。</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">どこまで変更できますか？<span class="faq-toggle">+</span></button>
+          <div class="faq-a">
+            <div class="faq-a-inner">テキスト・写真・ロゴ・配色・一部レイアウトの調整が可能です。大幅な構成変更や特殊なシステム開発は対応が難しい場合があります。詳しくはお問い合わせください。</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">写真や文章がなくても相談できますか？<span class="faq-toggle">+</span></button>
+          <div class="faq-a">
+            <div class="faq-a-inner">はい、素材がまだ揃っていない段階でもご相談いただけます。写真選定や文章作成のサポートオプションもご用意しています。</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">納期はどのくらいですか？<span class="faq-toggle">+</span></button>
+          <div class="faq-a">
+            <div class="faq-a-inner">プランや内容により異なりますが、素材をいただいてから通常2〜4週間程度で納品しています。スケジュールについてはヒアリング時にご相談ください。</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">修正は何回までですか？<span class="faq-toggle">+</span></button>
+          <div class="faq-a">
+            <div class="faq-a-inner">基本プランには修正回数を含んでおります。回数や範囲はプランにより異なりますので、詳細はお問い合わせ時にご案内します。</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">納品後の更新もお願いできますか？<span class="faq-toggle">+</span></button>
+          <div class="faq-a">
+            <div class="faq-a-inner">はい、公開後の更新サポートをオプションとしてご用意しています。定期的な更新やページの追加なども対応可能です。</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">独自ページの追加はできますか？<span class="faq-toggle">+</span></button>
+          <div class="faq-a">
+            <div class="faq-a-inner">はい、ベースの構成にないページを追加することも可能です。ページ追加はオプション対応となりますので、ご希望の内容をお聞かせください。</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">ロゴもまとめてお願いできますか？<span class="faq-toggle">+</span></button>
+          <div class="faq-a">
+            <div class="faq-a-inner">はい、通常のサイト制作プランとは別に「サイト＋ロゴ作成プラン」をご用意しています。新規立ち上げや、公開に合わせて世界観を整えたい場合におすすめです。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8-11 最後のCTA -->
+  <section class="final-cta" id="contact">
+    <div class="container fade-up">
+      <h2 class="final-cta-title">どの形が合いそうか、<br>まずは気軽に相談してみませんか？</h2>
+      <p class="final-cta-sub">お見積もり・ご相談は無料です。通常のサイト制作はもちろん、ロゴ込みの特別プランについてもご相談いただけます。</p>
+      <div class="final-cta-buttons">
+        <a href="#" class="btn btn-primary btn-arrow">自分に合う形を相談する</a>
+        <a href="#plans" class="btn btn-outline">プラン一覧を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-company">販売元：<a href="https://www.bananalabo.com/" target="_blank"
+          rel="noopener noreferrer">バナナラボ合同会社</a></p>
+      <p>© 2026 SemiOrder — 選んで始めるWebサイト制作</p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+
+</html>
